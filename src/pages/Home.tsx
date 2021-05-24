@@ -15,7 +15,7 @@ export function Home() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [tasks, setTasks] = useState<Task[]>([]);
   const [done, SetDone] = useState(false);
-  
+
   function handleAddTask(newTaskTitle: string) {
     if(newTaskTitle.length > 0){
       const data = {
@@ -32,7 +32,6 @@ export function Home() {
   }
 
   function handleMarkTaskAsDone(id: number) {
-    const data = tasks;
     
   }
 
