@@ -25,14 +25,12 @@ export function TodoInput({ addTask }: TodoInputProps) {
         onSubmitEditing={handleAddNewTask}
         value={task}
         onChangeText={setTask}
-        //TODO - use value, onChangeText and onSubmitEditing props
       />
       <TouchableOpacity
         testID="add-new-task-button"
         activeOpacity={0.7}
         style={styles.addButton}
         onPress={handleAddNewTask}
-        //TODO - onPress prop
       >
         <Image source={checkIcon} />
       </TouchableOpacity>
