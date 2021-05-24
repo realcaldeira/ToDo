@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Alert, StyleSheet, View } from 'react-native';
 
 import { Header } from '../components/Header';
 import { MyTasksList } from '../components/MyTasksList';
@@ -16,33 +17,33 @@ export function Home() {
   const [done, SetDone] = useState(false);
   
   function handleAddTask(newTaskTitle: string) {
+    if(newTaskTitle.length > 0){
       const data = {
-        id: new Date().getTime(),
-        title: newTaskTitle,
-        done: false,
-      }
-      setTasks(oldState => [...oldState, data]);
+          id: new Date().getTime(),
+          title: newTaskTitle,
+          done: false
+        }
+        setTasks(oldState => [...oldState, data]);
+        setNewTaskTitle('');
+    } else {
+      Alert.alert("", "Digite um valor válido.");
+    } 
+    
   }
 
   function handleMarkTaskAsDone(id: number) {
-    const data = {
-      id: id,
-      title: newTaskTitle,
-      done: !done
-    }
+    const data = tasks;
     
-    setTasks(oldState => [...oldState, data]);
   }
 
   function handleRemoveTask(id: number) {
-    
     setTasks(oldState => oldState.filter(
-      task => task.id !== id
-    ))
+      task => task.id !== id 
+    ));
   }
 
   return (
-    <>
+    <View style={styles.container}>
       <Header />
 
       <TodoInput addTask={handleAddTask} />
@@ -52,6 +53,13 @@ export function Home() {
         onPress={handleMarkTaskAsDone} 
         onLongPress={handleRemoveTask} 
       />
-    </>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    backgroundColor: '#FFF'
+  }
+})
