@@ -21,10 +21,10 @@ export function Home() {
       const data = {
           id: new Date().getTime(),
           title: newTaskTitle,
-          done: false
+          done: done
         }
         setTasks(oldState => [...oldState, data]);
-        setNewTaskTitle('');
+        setNewTaskTitle('');//PROBLEMA
     } else {
       Alert.alert("", "Digite um valor válido.");
     } 
@@ -32,7 +32,17 @@ export function Home() {
   }
 
   function handleMarkTaskAsDone(id: number) {
-    
+    const data = tasks.map(task =>{ 
+      if(task.id === id){
+        return {
+          ...task,
+          done: !task.done
+        }
+        }else{
+          return task
+      }
+    })
+    setTasks(data);
   }
 
   function handleRemoveTask(id: number) {
