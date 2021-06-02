@@ -1,15 +1,18 @@
 import React from 'react';
-import { FlatList, TouchableOpacity, View, Text, StyleSheet, FlatListProps } from 'react-native';
+import { FlatList, TouchableOpacity, View, Text, StyleSheet, TouchableOpacityProps } from 'react-native';
 
 function FlatListHeaderComponent() {
+  
+
   return (
-    <View>
-      <Text style={styles.header}>Minhas tasks</Text>
+    <View style={styles.container}>
+      <Text style={ styles.header}>Minhas tasks</Text>
+      
     </View>
   )
 }
 
-interface MyTasksListProps {
+interface MyTasksListProps{
   tasks: {
     id: number;
     title: string;
@@ -20,6 +23,7 @@ interface MyTasksListProps {
 }
 
 export function MyTasksList({ tasks, onLongPress, onPress }: MyTasksListProps) {
+  
   return (
     <FlatList
       data={tasks}
@@ -59,8 +63,19 @@ export function MyTasksList({ tasks, onLongPress, onPress }: MyTasksListProps) {
 }
 
 const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    flexDirection: 'row',
+    alignItems:'center',
+    justifyContent:'space-between'
+  },
   header: {
     color: '#3D3D4D',
+    fontSize: 24,
+    fontFamily: 'Poppins-SemiBold'
+  },
+  headerDark:{
+    color: '#FFFF',
     fontSize: 24,
     fontFamily: 'Poppins-SemiBold'
   },
